@@ -3,8 +3,8 @@ from monster_class import *
 from gui import *
 import time
 
-def start_menu():
 
+def start_menu():
     clear_terminal()
     header("ASCII RPG par ApoStrofik")
     menu(["COMMENCER", "SORTIE"])
@@ -32,8 +32,8 @@ def start_menu():
             start_menu()
             break
 
-def player_config():
 
+def player_config():
     global player_name
 
     clear_terminal()
@@ -53,8 +53,8 @@ def player_config():
 
     fonc_class_choice()
 
-def fonc_class_choice():
 
+def fonc_class_choice():
     global player_class
 
     clear_terminal()
@@ -87,9 +87,8 @@ def fonc_class_choice():
             clear_terminal()
             fonc_class_choice()
 
-def start_adventure():
 
-    lvl = 1
+def start_adventure():
 
     def upper_winpart():
         header(f"{player_class.name} {player_class.classNAME} de niveau {player_class.level}")
@@ -97,36 +96,33 @@ def start_adventure():
         player_infos(player_class)
         print("\n")
 
-    def game_window():
+    def fight():
         clear_terminal()
         upper_winpart()
 
-        skeleton = Skeleton()
-        wolf = Wolf()
-
-        monster_tuple = (skeleton, wolf)
-
-        monster_list = []
-        monster_queue = 0
-
-        for level in range(lvl):
-            monster_list.append(monster_tuple[random.randint(0,len(monster_tuple)-1)])
-
-        if len(monster_list) > 0 and monster_list[0].name == "SQUELETTE":
-            print("Un " + Back.LIGHTWHITE_EX + Fore.BLACK + monster_list[monster_queue].name + Style.RESET_ALL + " Vous attaque ...")
-        elif len(monster_list) > 0 and monster_list[0].name == "WOLF":
-            print("Un " + Back.YELLOW + Fore.BLACK + monster_list[monster_queue].name + Style.RESET_ALL + " Vous attaque ...")
-
-    game_window()
+        print("Un " + Back.WHITE + Fore.BLACK + f"{monster_lvl[0].name}" + Style.RESET_ALL + " vous attaque !")
+        print("")
+        menu(("ATTAQUER", "COMPETENCES", "SAC A DOS"))
+        print("")
+        choice = int(input(Fore.GREEN + "Votre choix : " + Style.RESET_ALL))
 
 
+    lvl = 0
 
+    skeleton = Skeleton()
+    wolf = Wolf()
+    monster_list = [skeleton, wolf]
+    monster_lvl = []
 
+    while player_class.life > 0:
 
+        if len(monster_lvl) <= 0:
 
+            lvl += 1
 
+            for level in range(lvl):
+                monster_lvl.append(monster_list[random.randint(0, len(monster_list) - 1)])
 
-
-
-
+        else:
+            fight()
 

@@ -8,6 +8,7 @@ class Player:
         self.experience = 0
         self.life = life
         self.max_life = max_life
+        self.attack = 10
         self.defense = defense
         self.dexterity = dexterity
         self.magic = magic
@@ -16,12 +17,18 @@ class Player:
         self.items_bag = []
 
 
+
 class Warrior(Player):
     def __init__(self, name, life, max_life, defense, dexterity, magic, gold):
         super().__init__(name, life, max_life, defense, dexterity, magic, gold)
 
         self.classNAME = "GUERRIER"
         self.force = 10
+
+    def attack_calc(self):
+        return self.attack + (self.force / 2)
+
+
 
 class Mage(Player):
     def __init__(self, name, life, max_life, defense, dexterity, magic, gold):

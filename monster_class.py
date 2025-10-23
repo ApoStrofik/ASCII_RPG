@@ -6,8 +6,8 @@ from items_class import Potion
 class Monster:
 
     def __init__(self):
-        self.life = 10
-
+        self.life = 20
+        self.max_life = 20
 
 class Skeleton(Monster):
     def __init__(self):

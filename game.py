@@ -96,33 +96,45 @@ def start_adventure():
         player_infos(player_class)
         print("\n")
 
+
     def fight():
-        clear_terminal()
-        upper_winpart()
 
-        print("Un " + Back.WHITE + Fore.BLACK + f"{monster_lvl[0].name}" + Style.RESET_ALL + " vous attaque !")
-        print("")
-        menu(("ATTAQUER", "COMPETENCES", "SAC A DOS"))
-        print("")
-        choice = int(input(Fore.GREEN + "Votre choix : " + Style.RESET_ALL))
+        lvl = 1
 
+        while player_class.life > 0:
 
-    lvl = 0
+                clear_terminal()
+                upper_winpart()
 
+                menu(("ATTAQUER", "COMPETENCES", "SAC A DOS"))
+                print("")
+
+                choice = int(input(Fore.GREEN + "Votre choix : " + Style.RESET_ALL))
+
+                while True:
+                    try:
+                        if choice == 1:
+                            pass
+                        elif choice == 2:
+                            pass
+                        elif choice == 3:
+                            pass
+                        else:
+                            print("")
+                            print(Fore.RED + "CHOIX INCORRECT !" + Style.RESET_ALL)
+                            time.sleep(2)
+                            fight()
+                    except ValueError:
+                        print("")
+                        print(Fore.RED + "CHOIX INCORRECT !" + Style.RESET_ALL)
+                        time.sleep(2)
+                        fight()
+
+    base_monster = Monster()
     skeleton = Skeleton()
     wolf = Wolf()
     monster_list = [skeleton, wolf]
     monster_lvl = []
 
-    while player_class.life > 0:
-
-        if len(monster_lvl) <= 0:
-
-            lvl += 1
-
-            for level in range(lvl):
-                monster_lvl.append(monster_list[random.randint(0, len(monster_list) - 1)])
-
-        else:
-            fight()
+    fight()
 

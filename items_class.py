@@ -6,3 +6,4 @@ class Potion:
         self.image = "*" + color + "(O)" + Style.RESET_ALL
         self.regen = regen
         self.effect = effect
+

@@ -7,8 +7,7 @@
     <list default="true" id="8850eb6b-821d-48be-911a-d5a12fc77daa" name="Changes" comment="game.py MODIF fight() in dev">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monster_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/monster_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/items_class.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +40,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.items_class.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -78,7 +78,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761225289735</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="game.py MODIF fight() in dev">
+      <option name="closed" value="true" />
+      <created>1761252782090</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761252782091</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

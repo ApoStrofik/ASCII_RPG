@@ -8,7 +8,7 @@ class Player:
         self.experience = 0
         self.life = life
         self.max_life = max_life
-        self.attack = 10
+        self.attack = 5
         self.defense = defense
         self.dexterity = dexterity
         self.magic = magic
@@ -22,10 +22,18 @@ class Warrior(Player):
         super().__init__(name, life, max_life, defense, dexterity, magic, gold)
 
         self.classNAME = "GUERRIER"
-        self.force = 10
+        self.force = 20
 
     def attack_calc(self):
-        return self.attack + (self.force / 2)
+        return int(self.attack + (self.force / 2))
+
+    def lvl_up(self):
+        self.level += 1
+        self.experience = 0
+        self.life += 15
+        self.max_life += 15
+        self.force += 5
+
 
 class Mage(Player):
     def __init__(self, name, life, max_life, defense, dexterity, magic, gold):
@@ -34,12 +42,33 @@ class Mage(Player):
         self.classNAME = "MAGE"
         self.intel = 10
 
+    def attack_calc(self):
+        return int(self.attack + (self.intel / 2))
+
+    def lvl_up(self):
+        self.level += 1
+        self.experience = 0
+        self.life += 15
+        self.max_life += 15
+        self.intel += 5
+
+
 class Rogue(Player):
     def __init__(self, name, life, max_life, defense, dexterity, magic, gold):
         super().__init__(name, life, max_life, defense, dexterity, magic, gold)
 
         self.classNAME = "VOLEUR"
         self.esquive = 10
+
+    def attack_calc(self):
+        return int(self.attack + (self.esquive / 2))
+
+    def lvl_up(self):
+        self.level += 1
+        self.experience = 0
+        self.life += 15
+        self.max_life += 15
+        self.esquive += 5
 
 
 class Niveau:

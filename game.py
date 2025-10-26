@@ -102,11 +102,12 @@ def start_adventure():
 
     if len(monster_lvl) <= 0:
 
-        clear_terminal()
-        print(monster_lvl)
-        time.sleep(2)
-
         niveau.lvl += 1
+
+        clear_terminal()
+        print("\n\n\n")
+        print(Back.WHITE + Fore.BLACK + f"Chargement du NIVEAU {niveau.lvl}" + Style.RESET_ALL)
+        time.sleep(2)
 
         for levels in range(niveau.lvl):
             monster_choice = random.randint(1, 2)
@@ -118,11 +119,17 @@ def start_adventure():
                 wolf = Wolf()
                 monster_lvl.append(wolf)
 
+        for monsters in monster_lvl:
+            monsters.life += 10 * niveau.lvl
+            monsters.max_life += 10 * niveau.lvl
+
         start_adventure()
 
     else:
         reset_screen()
 
+        print("Niveau " + Back.WHITE + Fore.BLACK + f"{niveau.lvl}" + Style.RESET_ALL)
+        print("\n")
         menu(("MARCHAND", "SAC A DOS", "COMBAT"))
         print("")
         choice = int(input(Fore.GREEN + "Votre choix : " + Fore.RESET))
@@ -136,21 +143,40 @@ def start_adventure():
                     break
                 elif choice == 3:
 
-                    reset_screen()
                     in_fight = True
 
                     while in_fight:
-                        print(f"Un {monster_lvl[0].name} vous attaque !!!")
+                        reset_screen()
+                        print("Niveau " + Back.WHITE + Fore.BLACK + f"{niveau.lvl}" + Style.RESET_ALL)
+                        print("\n")
+
+                        print("Un " + Back.WHITE + Fore.BLACK + f"{monster_lvl[0].name}" + Style.RESET_ALL + " vous attaque !!!" + Fore.YELLOW + f"  {monster_lvl[0].life} / {monster_lvl[0].max_life}" + Style.RESET_ALL + " PV")
                         menu(("ATTAQUE", "SAC A DOS"))
+                        print("")
                         in_fight_choice = int(input(Fore.GREEN + "Votre choix : " + Fore.RESET))
 
                         if in_fight_choice == 1:
-                            pass
+                            print("")
+                            print("Vous infligez " + Fore.RED + f"{player_class.attack_calc()} dégats" + Style.RESET_ALL + " au " + Back.WHITE + Fore.BLACK + f"{monster_lvl[0].name}" + Style.RESET_ALL + " !")
+                            monster_lvl[0].life -= player_class.attack_calc()
+                            time.sleep(1)
+
+                            if monster_lvl[0].life <= 0:
+                                print("")
+                                print("Le " + Back.WHITE + Fore.BLACK + f"{monster_lvl[0].name}" + Style.RESET_ALL + " est mort !")
+                                monster_lvl.remove(monster_lvl[0])
+                                player_class.experience += 20
+
+                                if player_class.experience >= 100:
+                                    player_class.lvl_up()
+
+
+                                if len(monster_lvl) <= 0:
+                                    start_adventure()
+
                         elif in_fight_choice == 2:
                             pass
 
-                        in_fight = False
-                        start_adventure()
 
             except ValueError:
                 start_adventure()

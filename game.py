@@ -1,7 +1,13 @@
+import random
+
 from game_class import *
 from monster_class import *
 from gui import *
 import time
+
+niveau = Niveau()
+base_monster = Monster()
+monster_lvl = []
 
 
 def start_menu():
@@ -90,82 +96,64 @@ def fonc_class_choice():
 
 def start_adventure():
 
-    class Niveau:
-        def __init__(self):
-            self.lvl = 0
+    def reset_screen():
+        clear_terminal()
+        upper_winpart(player_class, player_class.name, player_class.classNAME, player_class.level)
 
-    def upper_winpart():
-        header(f"{player_class.name} {player_class.classNAME} de niveau {player_class.level}")
-        print("")
-        player_infos(player_class)
-        print("\n")
-
-    niveau = Niveau()
-    base_monster = Monster()
-    skeleton = Skeleton()
-    wolf = Wolf()
-    monster_list = [skeleton, wolf]
-    monster_lvl = []
-
-    def fight():
+    if len(monster_lvl) <= 0:
 
         clear_terminal()
-        upper_winpart()
+        print(monster_lvl)
+        time.sleep(2)
 
-        if len(monster_lvl) <= 0:
-            niveau.lvl += 1
-            print(f"Niveau {niveau.lvl}")
-            for levels in range(niveau.lvl):
-                monster_lvl.append(monster_list[random.randint(0, len(monster_list) - 1)])
-            for monsters in monster_lvl:
-                monsters.life = 20 + (niveau.lvl * 5)
-                monsters.max_life = 20 + (niveau.lvl * 5)
+        niveau.lvl += 1
 
-        elif len(monster_lvl) > 0:
-            print(f"Niveau {niveau.lvl}")
+        for levels in range(niveau.lvl):
+            monster_choice = random.randint(1, 2)
 
+            if monster_choice == 1:
+                skeleton = Skeleton()
+                monster_lvl.append(skeleton)
+            if monster_choice == 2:
+                wolf = Wolf()
+                monster_lvl.append(wolf)
+
+        start_adventure()
+
+    else:
+        reset_screen()
+
+        menu(("MARCHAND", "SAC A DOS", "COMBAT"))
         print("")
-        print(f"Un {monster_lvl[0].name} vous attaque !!!  {monster_lvl[0].life} / {monster_lvl[0].max_life}")
-        print("")
-
-        menu(("ATTAQUER", "COMPETENCES", "SAC A DOS"))
-        print("")
-
-        choice = int(input(Fore.GREEN + "Votre choix : " + Style.RESET_ALL))
+        choice = int(input(Fore.GREEN + "Votre choix : " + Fore.RESET))
 
         while True:
             try:
                 if choice == 1:
-                    monster_lvl[0].life -= player_class.attack_calc()
-                    print("")
-                    print("Vous infligez " + Fore.RED + f"{player_class.attack_calc()}" + Fore.RESET + " dégats au "
-                          + Back.WHITE + Fore.BLACK + f"{monster_lvl[0].name}" + Style.RESET_ALL + " !!")
-                    time.sleep(2)
-                    if monster_lvl[0].life > 0:
-                        print("")
-                        print("Le combat continue ...")
-                        time.sleep(1)
-                    elif monster_lvl[0].life <= 0:
-                        monster_lvl.remove(monster_lvl[0])
-                        print("")
-                        print("Le monstre est mort ...")
-                        time.sleep(1)
-                    fight()
+                    pass
                 elif choice == 2:
-                    pass
+                    print(player_class.items_bag)
+                    break
                 elif choice == 3:
-                    pass
-                else:
-                    print("")
-                    print(Fore.RED + "CHOIX INCORRECT !" + Style.RESET_ALL)
-                    time.sleep(2)
-                    fight()
-            except ValueError:
-                print("")
-                print(Fore.RED + "CHOIX INCORRECT !" + Style.RESET_ALL)
-                time.sleep(2)
-                fight()
 
-    fight()
+                    reset_screen()
+                    in_fight = True
+
+                    while in_fight:
+                        print(f"Un {monster_lvl[0].name} vous attaque !!!")
+                        menu(("ATTAQUE", "SAC A DOS"))
+                        in_fight_choice = int(input(Fore.GREEN + "Votre choix : " + Fore.RESET))
+
+                        if in_fight_choice == 1:
+                            pass
+                        elif in_fight_choice == 2:
+                            pass
+
+                        in_fight = False
+                        start_adventure()
+
+            except ValueError:
+                start_adventure()
+
 
 

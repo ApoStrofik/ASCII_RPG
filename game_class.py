@@ -17,7 +17,6 @@ class Player:
         self.items_bag = []
 
 
-
 class Warrior(Player):
     def __init__(self, name, life, max_life, defense, dexterity, magic, gold):
         super().__init__(name, life, max_life, defense, dexterity, magic, gold)
@@ -27,8 +26,6 @@ class Warrior(Player):
 
     def attack_calc(self):
         return self.attack + (self.force / 2)
-
-
 
 class Mage(Player):
     def __init__(self, name, life, max_life, defense, dexterity, magic, gold):
@@ -43,3 +40,8 @@ class Rogue(Player):
 
         self.classNAME = "VOLEUR"
         self.esquive = 10
+
+
+class Niveau:
+    def __init__(self):
+        self.lvl = 0

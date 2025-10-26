@@ -35,3 +35,9 @@ def player_infos(player_obj):
     print(Back.WHITE + Fore.BLACK + f"EXP" + Style.RESET_ALL + " : " + Back.GREEN + (int(player_obj.experience / 10) * " ") + Style.RESET_ALL + (
             (10 - int(player_obj.experience / 10)) * "_") + "   " + color + f"{player_obj.life} " + Style.RESET_ALL + f"/ {player_obj.max_life} PV" +
           "   " + f"{player_obj.gold}" + Fore.YELLOW + " ©" + Style.RESET_ALL)
+
+def upper_winpart(player_obj, player_name, class_player, player_lvl):
+    header(f"{player_name} {class_player} de niveau {player_lvl}")
+    print("")
+    player_infos(player_obj)
+    print("\n")
